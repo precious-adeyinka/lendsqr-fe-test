@@ -1,0 +1,16 @@
+$primary-color: #39cdcc;
+$secondary-color: #213f7d;
+
+html {
+	height: 100%;
+	width: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+}
