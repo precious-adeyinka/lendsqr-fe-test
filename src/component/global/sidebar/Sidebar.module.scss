@@ -30,6 +30,12 @@ $font-family: "Roboto", sans-serif;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+.wrapper::-webkit-scrollbar {
+	@media (max-width: $medium-screen) {
+		display: none;
+		padding-bottom: 1rem;
+	}
+}
 
 .innerWrapper {
 	height: auto;
