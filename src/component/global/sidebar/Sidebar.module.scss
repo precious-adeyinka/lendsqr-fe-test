@@ -33,7 +33,6 @@ $font-family: "Roboto", sans-serif;
 .wrapper::-webkit-scrollbar {
 	@media (max-width: $medium-screen) {
 		display: none;
-		padding-bottom: 1rem;
 	}
 }
 
@@ -50,7 +49,7 @@ $font-family: "Roboto", sans-serif;
 
 	@media (max-width: $medium-screen) {
 		padding-top: 0;
-		padding-bottom: 5rem;
+		padding-bottom: 10rem;
 	}
 }
 
@@ -177,6 +176,15 @@ $font-family: "Roboto", sans-serif;
 	border-left-color: $primary-color;
 	background: $primary-color-faded;
 }
+.sectionSegmentOptionActive {
+	border-left-color: $primary-color;
+	background: $primary-color-faded;
+}
+.sectionSegmentOptionActive .sectionSegmentOptionLabel,
+.sectionSegmentOptionActive .sectionSegmentOptionIcon {
+	color: $text-color;
+}
+
 .sectionSegmentOptionIcon {
 	width: auto;
 	font-size: 16px;

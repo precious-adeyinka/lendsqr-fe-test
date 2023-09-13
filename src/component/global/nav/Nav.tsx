@@ -6,6 +6,7 @@ import styles from "./Nav.module.scss";
 import { FiBell, FiChevronDown, FiSearch } from "react-icons/fi";
 
 // components
+import Link from "next/link";
 import Image from "next/image";
 
 const Nav: FC = () => {
@@ -50,14 +51,16 @@ const Nav: FC = () => {
 			<section className={styles.row}>
 				<div className={styles.colLeft}>
 					{/* logo */}
-					<div className={styles.logoWrapper}>
-						<Image
-							className={styles.logo}
-							src={"/assets/images/logo.png"}
-							alt={"Login Background"}
-							fill
-						/>
-					</div>
+					<Link href="/dashboard" className={styles.linkWrapper}>
+						<div className={styles.logoWrapper}>
+							<Image
+								className={styles.logo}
+								src={"/assets/images/logo.png"}
+								alt={"Login Background"}
+								fill
+							/>
+						</div>
+					</Link>
 					<div className={styles.searchFormWrapper}>
 						<form
 							className={styles.searchForm}

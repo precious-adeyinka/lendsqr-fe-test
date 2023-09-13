@@ -1,5 +1,9 @@
-import React, { FC, useState } from "react";
+"use client";
+import React, { FC, useState, useEffect } from "react";
 import styles from "./Sidebar.module.scss";
+import classNames from "classnames";
+
+import { useRouter } from "next/router";
 
 // icons
 import { FiChevronDown, FiUserX } from "react-icons/fi";
@@ -17,6 +21,10 @@ import { GrTransaction } from "react-icons/gr";
 import { AiOutlineTransaction } from "react-icons/ai";
 
 const Sidebar: FC = () => {
+	const router = useRouter();
+
+	let pathname: string = router.pathname;
+
 	const [sections, setSections] = useState([
 		{
 			title: "CUSTOMERS",
@@ -26,7 +34,7 @@ const Sidebar: FC = () => {
 						<BsPeople className={styles.sectionSegmentOptionIcon} />
 					),
 					label: "Users",
-					url: "",
+					url: "/admin/users",
 				},
 				{
 					icon: (
@@ -213,6 +221,17 @@ const Sidebar: FC = () => {
 		return icon;
 	};
 
+	const shouldBeActive = (url?: string) => {
+		if (pathname === url) {
+			return styles.sectionSegmentOptionActive;
+		}
+		return;
+	};
+
+	useEffect(() => {
+		pathname = router?.pathname;
+	}, [pathname]);
+
 	return (
 		<section className={styles.wrapper}>
 			<div className={styles.innerWrapper}>
@@ -256,10 +275,22 @@ const Sidebar: FC = () => {
 										{section?.data.map((item, index) => {
 											return (
 												<div
+													onClick={() => {
+														if (
+															item?.url.length > 1
+														) {
+															router.push(
+																item?.url
+															);
+														}
+													}}
 													key={`${item?.label}-${index}`}
-													className={
-														styles.sectionSegmentOption
-													}
+													className={classNames(
+														styles.sectionSegmentOption,
+														shouldBeActive(
+															item?.url
+														)
+													)}
 												>
 													{/* icon */}
 													{renderIcon(item.icon)}
