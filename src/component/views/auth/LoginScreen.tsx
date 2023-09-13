@@ -3,11 +3,23 @@ import React, { FC, useState, FormEvent, ChangeEvent } from "react";
 import styles from "./Login.module.scss";
 
 // components
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Preloader from "@/component/global/preloader/Preloader";
 
+// storage service
+import Storage from "@/services/storage.service";
+const storage = new Storage();
+
+interface UserData {
+	email: string;
+	password: string;
+}
+
 const LoginScreen: FC = () => {
+	const navigation = useRouter();
+
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 
@@ -35,7 +47,12 @@ const LoginScreen: FC = () => {
 				email,
 				password,
 			};
-			console.log(user);
+			storage.setItem<UserData>("user", user);
+
+			// redirect user to the dashboard after 2 seconds
+			setTimeout(() => {
+				navigation.push("/dashboard");
+			}, 2000);
 		} else {
 			setLoading(false);
 		}
