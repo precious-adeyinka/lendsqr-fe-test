@@ -1,0 +1,312 @@
+/*
+**
+** VARIABLES
+**
+*/
+
+// colors
+$primary-color: #39cdcc;
+$secondary-color: #213f7d;
+$text-color: #545f7d;
+$grey: #ddd;
+$gray: #aaa;
+
+// screens
+$medium-screen: 768px;
+$large-screen: 1024px;
+
+// typography
+$font-family: "Roboto", sans-serif;
+
+.navigation {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.5);
+	padding: 12px;
+
+	@media (max-width: $medium-screen) {
+		padding: 1rem;
+		box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+	}
+}
+
+/*
+**
+** LAYOUT
+**
+*/
+.row {
+	height: 100%;
+	width: 98%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+
+	@media (max-width: $medium-screen) {
+		width: 100%;
+	}
+}
+.colLeft {
+	height: 100%;
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		width: 100%;
+	}
+}
+.colRight {
+	height: 100%;
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		width: 50px;
+	}
+}
+
+/*
+**
+** LOGO
+**
+*/
+.logoWrapper {
+	height: 100%;
+	width: 30%;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+	}
+}
+.logo {
+	display: block;
+	max-width: 50%;
+	height: auto;
+	object-fit: contain;
+
+	@media (max-width: $medium-screen) {
+		max-width: 100%;
+	}
+}
+
+/*
+**
+** SEARCH FORM
+**
+*/
+.searchFormWrapper {
+	height: 100%;
+	width: 70%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		width: 100%;
+		margin-left: 1rem;
+	}
+}
+.searchForm {
+	height: 100%;
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		width: 100%;
+	}
+}
+.field {
+	height: 30px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.input {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	padding: 3px 14px;
+	border-radius: 5px;
+	border: 1px solid $grey;
+	transition: all 10ms linear;
+	font-family: $font-family;
+	color: $text-color;
+}
+.input:focus {
+	outline: 1px solid $primary-color;
+}
+.input::placeholder {
+	font-size: 12px;
+	color: $gray;
+	font-weight: 400;
+}
+.cta {
+	height: 100%;
+	width: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background: $primary-color;
+	border: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	position: absolute;
+	right: 0;
+}
+.ctaIcon {
+	font-size: 16px;
+	color: #fff;
+}
+
+/*
+**
+** ACTION MENU
+**
+*/
+.actionWrapper {
+	height: auto;
+	width: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		display: none;
+	}
+}
+.actionDoc {
+	font-size: 14px;
+	font-weight: 500;
+	color: $text-color;
+	text-decoration: underline;
+	border: none;
+	background: none;
+	cursor: pointer;
+	margin-right: 1rem;
+	font-family: $font-family;
+}
+.actionNotification {
+	border: none;
+	background: none;
+	cursor: pointer;
+	margin-right: 1rem;
+}
+.actionNotificationIcon {
+	font-size: 20px;
+	color: $text-color;
+}
+.avatarWrapper {
+	height: auto;
+	width: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+.avatarCircle {
+	overflow: hidden;
+	height: 35px;
+	width: 35px;
+	border-radius: 100%;
+	background: $grey;
+	margin-right: 8px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	position: relative;
+}
+.avatar {
+	max-width: 100%;
+	display: block;
+	object-fit: cover;
+	height: auto;
+}
+.avatarDropdown {
+	height: auto;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+.avatarDropdownBtn {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	cursor: pointer;
+}
+.avatarDropdownBtnLabel {
+	font-size: 14px;
+	font-weight: 500;
+	color: $text-color;
+	margin-right: 4px;
+	font-family: $font-family;
+}
+.avatarDropdownIconWrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.avatarDropdownIcon {
+	font-size: 16px;
+	color: $text-color;
+}
+
+/*
+**
+** HAMBURGER MENU
+**
+*/
+.hamburger {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-left: 1rem;
+
+	@media (min-width: $large-screen) {
+		display: none;
+	}
+}
+.hamburgerBar {
+	height: 3px;
+	width: 100%;
+	background: $secondary-color;
+	margin: 2px auto;
+}

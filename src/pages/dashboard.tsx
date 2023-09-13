@@ -2,13 +2,13 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.scss";
 
 // components
-import LoginScreen from "@/component/views/auth/LoginScreen";
+import DashboardScreen from "@/component/views/dashboard/DashboardScreen";
 
-export default function Home() {
+export default function Dashboard() {
 	return (
 		<>
 			<Head>
-				<title>Login | LendSqr Test App</title>
+				<title>Dashboard | LendSqr Test App</title>
 				<meta
 					name="description"
 					content="A management platform for lenders"
@@ -20,7 +20,7 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.main}>
-				<LoginScreen />
+				<DashboardScreen />
 			</main>
 		</>
 	);

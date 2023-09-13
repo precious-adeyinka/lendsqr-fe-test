@@ -1,8 +1,6 @@
 "use client";
 import React, { FC, useState, FormEvent, ChangeEvent } from "react";
 import styles from "./Login.module.scss";
-// classes
-// import classNames from "classnames";
 
 // components
 import Image from "next/image";
@@ -73,19 +71,19 @@ const LoginScreen: FC = () => {
 
 	return (
 		<div className={styles.wrapper}>
-			{/* logo */}
-			<div className={styles.logoWrapper}>
-				<Image
-					className={styles.logo}
-					src={"/assets/images/logo.png"}
-					alt={"Login Background"}
-					fill
-				/>
-			</div>
-
 			<section className={styles.row}>
 				{/* left */}
 				<div className={styles.colLeft}>
+					{/* logo */}
+					<div className={styles.logoWrapper}>
+						<Image
+							className={styles.logo}
+							src={"/assets/images/logo.png"}
+							alt={"Login Background"}
+							fill
+						/>
+					</div>
+
 					<div className={styles.imageWrapper}>
 						<Image
 							className={styles.loginBg}
@@ -98,59 +96,68 @@ const LoginScreen: FC = () => {
 
 				{/* right */}
 				<div className={styles.colRight}>
-					<h2 className={styles.title}>Welcome!</h2>
-					<h3 className={styles.caption}>Enter details to login.</h3>
+					<div className={styles.formContainer}>
+						<h2 className={styles.title}>Welcome!</h2>
+						<h3 className={styles.caption}>
+							Enter details to login.
+						</h3>
 
-					{/* error */}
-					<span className={styles.errorText}>{error}</span>
+						{/* error */}
+						<span className={styles.errorText}>{error}</span>
 
-					<form
-						className={styles.formWrapper}
-						onSubmit={handleSubmit}
-					>
-						{/* email */}
-						<div className={styles.field}>
-							<input
-								type="email"
-								placeholder={"Email"}
-								value={email}
-								onChange={handleEmail}
-								className={styles.input}
-							/>
-						</div>
+						<form
+							className={styles.formWrapper}
+							onSubmit={handleSubmit}
+						>
+							{/* email */}
+							<div className={styles.field}>
+								<input
+									type="email"
+									placeholder={"Email"}
+									value={email}
+									onChange={handleEmail}
+									className={styles.input}
+								/>
+							</div>
 
-						{/* password */}
-						<div className={styles.field}>
-							<input
-								type={isPasswordVisible ? "text" : "password"}
-								placeholder={"Password"}
-								value={password}
-								onChange={handlePassword}
-								className={styles.input}
-							/>
-							<button
-								type="button"
-								className={styles.passwordVisibility}
-								onClick={togglePasswordVisibility}
-							>
-								{isPasswordVisible ? "hide" : "show"}
+							{/* password */}
+							<div className={styles.field}>
+								<input
+									type={
+										isPasswordVisible ? "text" : "password"
+									}
+									placeholder={"Password"}
+									value={password}
+									onChange={handlePassword}
+									className={styles.input}
+								/>
+								<button
+									type="button"
+									className={styles.passwordVisibility}
+									onClick={togglePasswordVisibility}
+								>
+									{isPasswordVisible ? "hide" : "show"}
+								</button>
+							</div>
+
+							{/* forgot password */}
+							<div className={styles.forgotPasswordWrapper}>
+								<Link
+									href="#"
+									className={styles.forgotPassword}
+								>
+									<p className={styles.forgotPassword}>
+										Forgot password?
+									</p>
+								</Link>
+							</div>
+
+							{/* cta */}
+							<button type="submit" className={styles.cta}>
+								{loading ? "loading..." : "LOG IN"}
 							</button>
-						</div>
-
-						{/* forgot password */}
-						<div className={styles.forgotPasswordWrapper}>
-							<Link href="#" className={styles.forgotPassword}>
-								<p className={styles.forgotPassword}>
-									Forgot password?
-								</p>
-							</Link>
-						</div>
-
-						{/* cta */}
-						<button type="submit" className={styles.cta}>
-							{loading ? "loading..." : "LOG IN"}
-						</button>
-					</form>
+						</form>
+					</div>
 				</div>
 			</section>
 
