@@ -5,6 +5,9 @@ import classNames from "classnames";
 // icons
 import { LiaEllipsisVSolid } from "react-icons/lia";
 import { FiEye } from "react-icons/fi";
+import { BiUserCheck, BiSolidUserX } from "react-icons/bi";
+
+import { useRouter } from "next/navigation";
 
 interface Props {
 	tableData: number[];
@@ -12,6 +15,8 @@ interface Props {
 }
 
 const TableRow: FC<Props> = ({ tableData, id }) => {
+	const router = useRouter();
+
 	const [showMoreContext, setShowMoreContext] = useState(false);
 
 	const toggleMoreContext = () => {
@@ -55,7 +60,12 @@ const TableRow: FC<Props> = ({ tableData, id }) => {
 				id === tableData.length - 1 ? styles.tableRowLast : ""
 			)}
 		>
-			<div className={styles.tableCell}>
+			<div
+				onClick={() => {
+					router.push(`/admin/users/details/${id}`);
+				}}
+				className={styles.tableCell}
+			>
 				<div className={styles.tableCellData}>Lendsqr</div>
 			</div>
 			<div className={styles.tableCell}>
@@ -109,7 +119,7 @@ const TableRow: FC<Props> = ({ tableData, id }) => {
 								<div
 									className={styles.tableCellDataIconWrapper}
 								>
-									<FiEye
+									<BiSolidUserX
 										className={styles.tableCellDataIcon}
 									/>
 								</div>
@@ -122,7 +132,7 @@ const TableRow: FC<Props> = ({ tableData, id }) => {
 								<div
 									className={styles.tableCellDataIconWrapper}
 								>
-									<FiEye
+									<BiUserCheck
 										className={styles.tableCellDataIcon}
 									/>
 								</div>

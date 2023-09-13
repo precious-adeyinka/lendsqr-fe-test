@@ -1,0 +1,460 @@
+/*
+**
+** VARIABLES
+**
+*/
+
+// colors
+$primary-color: #39cdcc;
+$secondary-color: #213f7d;
+$text-color: #545f7d;
+$grey: #ddd;
+$gray: #aaa;
+$yellow: #e9b200;
+
+// statistics color
+$pink-faded: rgba(223, 24, 255, 0.2);
+$purple-faded: rgba(87, 24, 255, 0.2);
+$orange-faded: rgba(245, 95, 68, 0.2);
+$red-faded: rgba(255, 55, 102, 0.2);
+
+$pink: #df18ff;
+$purple: #5718ff;
+$orange: #f55f44;
+$red: #ff3366;
+
+// status color
+$active-faded: rgba(57, 205, 98, 0.2);
+$inactive-faded: rgba(84, 95, 255, 0.2);
+$pending-faded: rgba(245, 95, 68, 0.2);
+$blacklisted-faded: rgba(228, 3, 59, 0.2);
+$default-faded: rgba(170, 170, 170, 0.2);
+
+$active: #39cd62;
+$inactive: #545f7d;
+$pending: #f55f44;
+$blacklisted: #e4033b;
+$default: $gray;
+
+// screens
+$medium-screen: 768px;
+$large-screen: 1024px;
+
+// typography
+$font-family: "Roboto", sans-serif;
+
+/*
+**
+** CONTAINER
+**
+*/
+.wrapper {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+/*
+**
+** HEADER
+**
+*/
+.header {
+	height: 120px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background: #fafafa;
+	padding: 1.5rem;
+
+	@media (max-width: $medium-screen) {
+		padding: 0.5rem 1rem;
+		position: relative;
+		background: transparent;
+		margin-top: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+}
+.headerBackBtn {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	cursor: pointer;
+}
+.backBtn {
+	color: $gray;
+	margin-right: 1rem;
+}
+.backText {
+	font-size: 12px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $gray;
+}
+.title {
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 18px;
+	font-weight: 600;
+	font-family: $font-family;
+	color: $secondary-color;
+}
+.headerRow {
+	height: auto;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+.headerBtns {
+	height: auto;
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		width: 100%;
+		justify-content: flex-start;
+	}
+}
+.headerBtnRed {
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid $red;
+	font-size: 12px;
+	padding: 0 1.5rem;
+	color: $red;
+	font-family: $font-family;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+	margin-left: 1rem;
+
+	@media (max-width: $medium-screen) {
+		margin-left: 0rem;
+	}
+}
+.headerBtnBlue {
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid $primary-color;
+	font-size: 12px;
+	padding: 0 1.5rem;
+	color: $primary-color;
+	font-family: $font-family;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+	margin-left: 1rem;
+}
+
+/*
+**
+** PROFILE TABS
+**
+*/
+.profileTabWrapper {
+	height: auto;
+	width: 96%;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+	margin: 0 auto;
+	position: relative;
+}
+.profileTabCol {
+	margin-bottom: 5rem;
+	padding: 1rem 3rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+
+	@media (max-width: $medium-screen) {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 1rem;
+	}
+}
+
+// TAB BUTTONS
+.profileTabPills {
+	height: auto;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 0 1.5rem;
+
+	@media (max-width: $medium-screen) {
+		overflow-x: auto;
+		white-space: nowrap;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+}
+.profileTabPills::-webkit-scrollbar {
+	display: none;
+}
+.profileTabPill {
+	width: calc(100%) / 6;
+	font-size: 14px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $gray;
+	cursor: pointer;
+	padding: 10px 1rem;
+	margin: 0 10px;
+}
+.profileTabPillActive {
+	border-bottom: 2px solid $primary-color;
+	color: $primary-color;
+}
+
+/*
+**
+** USER COLUMN
+**
+*/
+.user {
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	margin-right: 3rem;
+	padding: 0.5rem 0;
+
+	@media (max-width: $medium-screen) {
+		width: 100%;
+	}
+}
+.userImage {
+	height: 90px;
+	width: 90px;
+	border-radius: 100%;
+	background: #ddd;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-right: 1.5rem;
+}
+.userName {
+	font-size: 18px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $secondary-color;
+	margin: 0 0 10px 0;
+}
+.userId {
+	font-size: 12px;
+	font-weight: 400;
+	font-family: $font-family;
+	color: $secondary-color;
+	margin: 0;
+}
+.userIcon {
+	font-size: 30px;
+	color: $secondary-color;
+}
+
+/*
+**
+** TIER COLUMN
+**
+*/
+.tier {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	margin-right: 3rem;
+	border-left: 1px solid $grey;
+	padding: 0.5rem 0 0 2rem;
+
+	@media (max-width: $medium-screen) {
+		border: none;
+		padding-left: 1rem;
+	}
+}
+.tierTitle {
+	font-size: 16px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $secondary-color;
+	margin-bottom: 2px;
+}
+.tierIcons {
+	font-size: 14px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $secondary-color;
+}
+.tierIcon {
+	font-size: 12px;
+	color: $yellow;
+	margin-right: 5px;
+}
+
+/*
+**
+** PAYMENT COLUMN
+**
+*/
+.payment {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	border-left: 1px solid $grey;
+	padding: 0.5rem 2rem;
+
+	@media (max-width: $medium-screen) {
+		border: none;
+		padding-left: 1rem;
+	}
+}
+.paymentAmount {
+	font-size: 22px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $secondary-color;
+	margin-bottom: 10px;
+}
+.paymentAccount {
+	font-size: 14px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $secondary-color;
+	margin: 0;
+}
+
+/*
+**
+** PROFILE DETAILS WRAPPER
+**
+*/
+.profileDetailsWrapper {
+	height: auto;
+	width: 96%;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+	margin: 0 auto;
+	position: relative;
+	margin-top: 3rem;
+	padding: 2rem;
+	margin-bottom: 5rem;
+}
+.profileDetailsSection {
+	height: auto;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 0.5rem;
+	margin-bottom: 3rem;
+}
+.profileDetailsSectionLast {
+	border: 0;
+	margin-bottom: 0;
+}
+.profileDetailsSectionTitle {
+	font-size: 16px;
+	font-weight: 600;
+	font-family: $font-family;
+	color: $secondary-color;
+	margin: 0;
+	margin-bottom: 2rem;
+}
+.profileDetailsSectionRow {
+	height: auto;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 10px;
+
+	@media (max-width: $medium-screen) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+.profileDetailsSectionCol {
+	height: auto;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	margin-right: 2rem;
+	margin-bottom: 2rem;
+}
+.profileDetailsSectionColTitle {
+	font-size: 12px;
+	font-weight: 300;
+	font-family: $font-family;
+	color: $gray;
+	margin: 0;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+}
+.profileDetailsSectionColDesc {
+	font-size: 16px;
+	font-weight: 500;
+	font-family: $font-family;
+	color: $secondary-color;
+	margin: 0;
+}
+.profileDetailsSectionColLast {
+	margin-bottom: 0;
+}
+
+// utilities
+.grid3 {
+	grid-template-columns: repeat(3, 1fr);
+
+	@media (max-width: $medium-screen) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+.grid4 {
+	grid-template-columns: repeat(4, 1fr);
+
+	@media (max-width: $medium-screen) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

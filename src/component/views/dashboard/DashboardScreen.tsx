@@ -24,8 +24,6 @@ const DashboardScreen = () => {
 	return (
 		<LayoutScreen>
 			<section className={styles.wrapper}>
-				{/* navigation */}
-
 				{/* header */}
 				<header className={styles.header}>
 					<h1 className={styles.title}>Users</h1>
