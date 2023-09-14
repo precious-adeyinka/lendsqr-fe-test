@@ -1,6 +1,6 @@
 # Lendsqr FrontEnd Engineer Project Test Assessment
 
-This project is a part of the frontend engineer job application judging criteria for a test assessment at Lendsqr. It's a web application developed using TypeScript, ReactJS, and various other technologies. Below, you'll find an overview of the project, its features, and instructions on how to run it locally.
+This project is a part of the frontend engineer job application judging criteria for a test assessment at Lendsqr. It's a web application developed using TypeScript, ReactJS, Scss and various other technologies. Below, you'll find an overview of the project, its features, and instructions on how to run it locally.
 
 ## Table of Contents
 
