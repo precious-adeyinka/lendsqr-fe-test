@@ -8,13 +8,22 @@ import { FiEye } from "react-icons/fi";
 import { BiUserCheck, BiSolidUserX } from "react-icons/bi";
 
 import { useRouter } from "next/navigation";
-
+interface Data {
+	id: string;
+	organization: string;
+	username: string;
+	email: string;
+	phone_number: string;
+	date_joined: string;
+	status: string;
+}
 interface Props {
-	tableData: number[];
+	record: Data;
+	tableData: Data[];
 	id: number;
 }
 
-const TableRow: FC<Props> = ({ tableData, id }) => {
+const TableRow: FC<Props> = ({ tableData, id, record }) => {
 	const router = useRouter();
 
 	const [showMoreContext, setShowMoreContext] = useState(false);
@@ -53,6 +62,19 @@ const TableRow: FC<Props> = ({ tableData, id }) => {
 		}
 	};
 
+	const convertDate = (inputDate: string) => {
+		inputDate = inputDate.replace(/\s+/g, ""); // Remove all spaces
+		const outputDate = new Date(inputDate).toLocaleString("en-US", {
+			month: "long",
+			day: "numeric",
+			year: "numeric",
+			hour: "numeric",
+			minute: "numeric",
+			hour12: true,
+		});
+		return outputDate;
+	};
+
 	return (
 		<div
 			className={classNames(
@@ -62,24 +84,28 @@ const TableRow: FC<Props> = ({ tableData, id }) => {
 		>
 			<div
 				onClick={() => {
-					router.push(`/admin/users/details/${id}`);
+					router.push(`/admin/users/details/${record?.id}`);
 				}}
 				className={styles.tableCell}
 			>
-				<div className={styles.tableCellData}>Lendsqr</div>
+				<div className={styles.tableCellData}>
+					{record?.organization}
+				</div>
 			</div>
 			<div className={styles.tableCell}>
-				<div className={styles.tableCellData}>Adedeji</div>
+				<div className={styles.tableCellData}>{record?.username}</div>
 			</div>
 			<div className={styles.tableCell}>
-				<div className={styles.tableCellData}>adedeji@lendsqr.com</div>
-			</div>
-			<div className={styles.tableCell}>
-				<div className={styles.tableCellData}>08078903721</div>
+				<div className={styles.tableCellData}>{record?.email}</div>
 			</div>
 			<div className={styles.tableCell}>
 				<div className={styles.tableCellData}>
-					May 15, 2020 10:00 AM
+					{record?.phone_number}
+				</div>
+			</div>
+			<div className={styles.tableCell}>
+				<div className={styles.tableCellData}>
+					{convertDate(record?.date_joined)}
 				</div>
 			</div>
 			<div className={styles.tableCell}>
@@ -87,11 +113,15 @@ const TableRow: FC<Props> = ({ tableData, id }) => {
 					className={classNames(
 						styles.tableCellData,
 						styles.bubble,
-						generateStatusBgColor("active")
+						generateStatusBgColor(record?.status)
 					)}
 				>
-					<span className={classNames(generateStatusColor("active"))}>
-						Inactive
+					<span
+						className={classNames(
+							generateStatusColor(record?.status)
+						)}
+					>
+						{record?.status}
 					</span>
 				</div>
 				<div className={styles.tableCellData}>

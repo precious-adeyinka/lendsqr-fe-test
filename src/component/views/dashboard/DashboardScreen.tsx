@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import styles from "./DashboardScreen.module.scss";
 import classNames from "classnames";
+
+import axios from "axios";
 
 // components
 import LayoutScreen from "@/component/layout/LayoutScreen";
 import TableRow from "./TableRow";
 import TableFilter from "./TableFilter";
+import TablePagination from "./TablePagination";
 
 // icons
 import { FiChevronLeft, FiChevronRight, FiChevronDown } from "react-icons/fi";
@@ -14,12 +18,67 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { LiaCoinsSolid } from "react-icons/lia";
 import { MdOutlineSavings } from "react-icons/md";
 
+interface Data {
+	id: string;
+	organization: string;
+	username: string;
+	email: string;
+	phone_number: string;
+	date_joined: string;
+	status: string;
+}
+
 const DashboardScreen = () => {
 	const [shouldShowTableFilter, setShouldShowTableFilter] =
 		useState<boolean>(false);
 	const toggleTableFilter = () => setShouldShowTableFilter((prev) => !prev);
 
-	const [tableData, setTableData] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+	const [tableData, setTableData] = useState<Data[] | null>(null);
+	const [page, setPage] = useState<number>(1);
+	const [totalPages, setTotalPages] = useState<number>(1);
+	const [perPage, setPerPage] = useState<number>(10);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [maxedOut, setMaxedOut] = useState<boolean>(false);
+
+	const fetchData = async (page: number, perPage: number) => {
+		setLoading(true);
+
+		try {
+			const result = await axios.get(
+				`/api/data?page=${page}&perPage=${perPage}}`
+			);
+			console.log(result?.data)
+			if (result?.data?.data.length > 0) {
+				setTableData(result?.data?.data);
+				setPage(result?.data?.page);
+				setTotalPages(result?.data?.total);
+			} else {
+				setMaxedOut(true);
+			}
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const handlePageChange = (page: number): void => {
+		// update current page
+		setPage(page + 1);
+		// fetch data from the db
+		fetchData(page, perPage);
+	};
+
+	const handleLimitChange = (limit: number): void => {
+		// update current limit
+		setPerPage(limit);
+		// fetch data from the db
+		fetchData(1, limit);
+	};
+
+	useEffect(() => {
+		fetchData(page, perPage);
+	}, [perPage]);
 
 	return (
 		<LayoutScreen>
@@ -179,74 +238,35 @@ const DashboardScreen = () => {
 										<TableRow
 											key={id}
 											tableData={tableData}
+											record={record}
 											id={id}
 										/>
 									);
 								})}
+
+							{/* loading */}
+							{loading ? (
+								<div className={styles.loadingSpinner}>
+									Loading...
+								</div>
+							) : null}
+
+							{/* no more data */}
+							{maxedOut ? (
+								<div className={styles.loadingSpinner}>
+									No more data found!
+								</div>
+							) : null}
 						</div>
 					</section>
 					{/* pagination */}
-					<div className={styles.tablePagination}>
-						<div className={styles.tablePaginationPerPage}>
-							<p className={styles.tablePaginationPerPageLabel}>
-								Showing
-							</p>
-							<div
-								className={
-									styles.tablePaginationPerPageDropDown
-								}
-							>
-								<p
-									className={
-										styles.tablePaginationPerPageDropDownLabel
-									}
-								>
-									100
-								</p>
-								<FiChevronDown
-									className={
-										styles.tablePaginationPerPageDropDownIcon
-									}
-								/>
-							</div>
-							<p className={styles.tablePaginationPerPageLabel}>
-								out of 100
-							</p>
-						</div>
-						{/* buttons */}
-						<div className={styles.tablePaginationBtns}>
-							<div className={styles.tablePaginationBtnPrev}>
-								<FiChevronLeft
-									className={
-										styles.tablePaginationPerPageDropDownIcon
-									}
-								/>
-							</div>
-							<div className={styles.tablePaginationBtn}>1</div>
-							<div className={styles.tablePaginationBtnInactive}>
-								2
-							</div>
-							<div className={styles.tablePaginationBtnInactive}>
-								3
-							</div>
-							<div className={styles.tablePaginationBtnInactive}>
-								...
-							</div>
-							<div className={styles.tablePaginationBtnInactive}>
-								15
-							</div>
-							<div className={styles.tablePaginationBtnInactive}>
-								16
-							</div>
-							<div className={styles.tablePaginationBtnNext}>
-								<FiChevronRight
-									className={
-										styles.tablePaginationPerPageDropDownIcon
-									}
-								/>
-							</div>
-						</div>
-					</div>
+					<TablePagination
+						visiblePages={perPage}
+						changeLimit={handleLimitChange}
+						currentPage={page}
+						totalPages={totalPages}
+						onPageChange={handlePageChange}
+					/>
 					{/* table filter */}
 					{shouldShowTableFilter ? <TableFilter /> : null}
 				</div>

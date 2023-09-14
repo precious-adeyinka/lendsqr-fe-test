@@ -378,6 +378,10 @@ $font-family: "Roboto", sans-serif;
 	margin-top: 3rem;
 	padding: 2rem;
 	margin-bottom: 5rem;
+
+	@media (max-width: $medium-screen) {
+		margin-bottom: 10rem;
+	}
 }
 .profileDetailsSection {
 	height: auto;
